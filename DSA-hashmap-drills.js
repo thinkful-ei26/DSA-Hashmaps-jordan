@@ -1,11 +1,5 @@
 'use strict';
 
-// Create a Hash map called lor and add the following items to it. 
-//{Hobbit:"Bilbo"}, {Hobbit:"Frodo"}, {Wizard:"Gandolf"}, {Human:"Aragon"}, 
-//{Elf: "Legolas"}, {Maiar:"The Necromancer"}, {Maiar: "Sauron"}, {RingBearer: "Gollum"}, 
-//{LadyOfLight: "Galadriel"}, {HalfElven: "Arwen"}, {Ent: "Treebeard"}
-// Retrieve the value that is hashed in the key Maiar
-
 class HashMap {
   constructor(intialCapacity=8){
     //to keep track of the hash map length
@@ -31,20 +25,14 @@ class HashMap {
   //resize
   _resize(size){
     const oldSlots = this._slots;
-    console.log('old',this._capacity,'new',size);
-
-    console.log('oldslots',oldSlots);
-
     this._capacity = size;
     //reset the length, it gets rebuilt as items are added
     this.length = 0;
     this._slots = [];
 
-
     //*if the slot exists, call the set method and add the new key/value pair
     for (const slot of oldSlots){
       if (slot !== undefined){
-        console.log('migrating',slot.key);
         this.set(slot.key, slot.value);
       }
     }
@@ -124,7 +112,6 @@ HashMap.MAX_LOAD_RATIO = 0.9;
 HashMap.SIZE_RATIO = 3;
 
 function main(){
-
   const lor = new HashMap();
 
   lor.set("Hobbit","Bilbo");
@@ -138,12 +125,52 @@ function main(){
   lor.set("LadyOfLight","Galadriel");
   lor.set("HalfElven","Arwen");
   lor.set("Ent","Treebeard");
+//   console.log('this is Maiar: ',lor.get('Maiar'));
+//   console.log(lor);
+}
+// main();
 
-  console.log('this is Maiar: ',lor.get('Maiar'));
+//check if any permutation of a string is a palindrome
 
-  console.log(lor);
+//input: 'acecarr', 'randy', 'hnnaah'
+//output: true, false, true
 
+//given a string, find all the permutations
+    //starting with an array, take each letter and see if there is a pair
+    //if the string doesn't contain any paired letters, it's not a palindrome
+    //if the string contains paired letters, keep going until we get to the letter without a pair
+    //if string.length is odd, then find the character without a pair and move into the middle
+    //divide the length of the string by two and use math.floor() to find the center
+    //every letter will have to have a pair with the exception of one if it is an odd length, but only one
 
+    //we put each character into it's own slot
+    //if old slot.value = current slot.value
+
+function palindrome(string){
+    let pal = new Map();
+    let odd_count = 0;
+
+    //iterate through the string, populate the hash
+    for (let i = 0; i < string.length; i++){
+        pal.set(string[i], string[i]);
+    }
+
+    //get the value of each key
+   pal.get()
+
+    //check the hash for chars that appear an odd number of times
+    for (let char in pal._slots){
+        console.log("pal:", pal._slots.length)
+        if (pal[char] % 2 !== 0){
+            odd_count++
+        }
+        if (odd_count > 1){
+            return false;
+        }    
+    }
+    // console.log('hash map:', pal)
+    // console.log(odd_count)
+    return true;
 }
 
-main();
+console.log(palindrome('randy'));
