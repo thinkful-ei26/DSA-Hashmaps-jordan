@@ -139,6 +139,8 @@ function main(){
   lor.set("HalfElven","Arwen");
   lor.set("Ent","Treebeard");
 
+  console.log('this is Maiar: ',lor.get('Maiar'));
+
   console.log(lor);
 
 
